@@ -30,20 +30,18 @@ public class Enviroment {
         
         // Start the SellingAgent.
         translatorAgent.start();
+        // Wait two seconds before start the sensors signals
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        // Start the sensors
         gpsAgent.start();
         maritimeLogAgent.start();
         gyroAgent.start();
         weatherAgent.start();
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        // Start the actuators
         actuatorOneAgent.start();
         actuatorTwoAgent.start();
         
