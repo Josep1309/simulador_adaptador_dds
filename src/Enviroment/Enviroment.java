@@ -5,10 +5,6 @@ import BESA.ExceptionBESA;
 import BESA.Kernel.System.AdmBESA;
 import BESA.Kernel.Agent.Event.EventBESA;
 
-import SellingAgent.SellingAgent;
-import SellingAgent.SellingAgentGuard;
-import BuyerAgent.BuyerAgent;
-
 // Agents
 import GPSAgent.GPSAgent;
 import GyroAgent.GyroAgent;
@@ -23,18 +19,42 @@ public class Enviroment {
         // Initialize the BESA administration system.
         AdmBESA admBesa = AdmBESA.getInstance();
         
-        // Create a new SellingAgent with the alias "HolaMundo".
+        // Create new agents with alias
         GPSAgent gpsAgent = GPSAgent.createAgent("GPS");
         MaritimeLogAgent maritimeLogAgent = MaritimeLogAgent.createAgent("MaritimeLog");
+        GyroAgent gyroAgent = GyroAgent.createAgent("Gyro");
+        WeatherAgent weatherAgent = WeatherAgent.createAgent("Weather");
+        TranslatorAgent translatorAgent = TranslatorAgent.createAgent("Translator");
+        ActuatorOneAgent actuatorOneAgent = ActuatorOneAgent.createAgent("ActuatorOne");
+        ActuatorTwoAgent actuatorTwoAgent = ActuatorTwoAgent.createAgent("ActuatorTwo");
         
         // Start the SellingAgent.
+        translatorAgent.start();
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         gpsAgent.start();
+        maritimeLogAgent.start();
+        gyroAgent.start();
+        weatherAgent.start();
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        actuatorOneAgent.start();
+        actuatorTwoAgent.start();
         
         // Retrieve the agent's handler by its alias and send an event to the SellingAgentGuard.
-        admBesa.getHandlerByAlias("comprador").sendEvent(new EventBESA(
-                        SellingAgentGuard.class.getName(), 
+        admBesa.getHandlerByAlias("Translator").sendEvent(new EventBESA(
                         null
                 )
         );
     }
 }
+
+
+// Periodic guard: Envia cada cierto tiempo
+// Guarda periodica y guarda normal para los actuadores

@@ -1,4 +1,4 @@
-package GPSAgent;
+package ActuatorTwoAgent;
 
 import BESA.ExceptionBESA;
 import BESA.Kernel.Agent.Event.EventBESA;
@@ -11,7 +11,7 @@ import java.util.logging.Logger;
  *
  * @author jairo
  */
-public class GPSAgentGuard extends GuardBESA {
+public class ActuatorTwoAgentGuard extends GuardBESA {
 
     @Override
     public void funcExecGuard(EventBESA ebesa) {
@@ -25,7 +25,7 @@ public class GPSAgentGuard extends GuardBESA {
         } catch (ExceptionBESA ex) {
             System.err.println(ex.getMessage());
         } catch (InterruptedException ex) {
-            Logger.getLogger(GPSAgentGuard.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ActuatorTwoAgentGuard.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
