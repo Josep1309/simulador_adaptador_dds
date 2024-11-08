@@ -44,15 +44,5 @@ public class Enviroment {
         // Start the actuators
         actuatorOneAgent.start();
         actuatorTwoAgent.start();
-        
-        // Retrieve the agent's handler by its alias and send an event to the SellingAgentGuard.
-        admBesa.getHandlerByAlias("Translator").sendEvent(new EventBESA(
-                        null
-                )
-        );
     }
 }
-
-
-// Periodic guard: Envia cada cierto tiempo
-// Guarda periodica y guarda normal para los actuadores

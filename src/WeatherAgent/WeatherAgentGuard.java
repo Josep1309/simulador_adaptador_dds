@@ -2,30 +2,27 @@ package WeatherAgent;
 
 import BESA.ExceptionBESA;
 import BESA.Kernel.Agent.Event.EventBESA;
-import BESA.Kernel.Agent.GuardBESA;
+import BESA.Kernel.Agent.PeriodicGuardBESA;
 import BESA.Kernel.System.AdmBESA;
+import TranslatorAgent.TranslatorAgentGuard;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author jairo
- */
-public class WeatherAgentGuard extends GuardBESA {
+public class WeatherAgentGuard extends PeriodicGuardBESA {
 
     @Override
-    public void funcExecGuard(EventBESA ebesa) {
-        System.out.println("Llegó a la Guarda del Vendedor");
+    public void funcPeriodicExecGuard(EventBESA eventBESA) {
         try {
-            AdmBESA.getInstance().getHandlerByAlias("comprador").sendEvent(new EventBESA(
-                            null
-                    )        
+            AdmBESA.getInstance().getHandlerByAlias("Translator")
+            .sendEvent(
+                new EventBESA(
+                    TranslatorAgentGuard.class.getName(),
+                    new WeatherAgentMessage("SensorWeatherInfo")
+                )
             );
-            Thread.sleep(1000);
-        } catch (ExceptionBESA ex) {
-            System.err.println(ex.getMessage());
-        } catch (InterruptedException ex) {
-            Logger.getLogger(WeatherAgentGuard.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ExceptionBESA e) {
+            throw new RuntimeException(e);
         }
     }
     

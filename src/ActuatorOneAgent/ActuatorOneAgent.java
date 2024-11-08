@@ -40,8 +40,8 @@ public class ActuatorOneAgent extends AgentBESA{
      * @throws ExceptionBESA If an error occurs during structure creation.
      */
     private static StructBESA createStruct(StructBESA structBESA) throws ExceptionBESA {
-        structBESA.addBehavior("GuardaGPS");
-        structBESA.bindGuard("GuardaGPS", ActuatorOneAgentGuard.class);
+        structBESA.addBehavior("ActuatorOneAgentGuard");
+        structBESA.bindGuard("ActuatorOneAgentGuard", ActuatorOneAgentGuard.class);
         return structBESA;
     }
 

@@ -24,22 +24,14 @@ public class TranslatorAgent extends AgentBESA{
     }
 
     private static StructBESA createStruct(StructBESA structBESA) throws ExceptionBESA {
-        structBESA.addBehavior("GuardaGPS");
-        structBESA.bindGuard("GuardaGPS", TranslatorAgentGuard.class);
+        structBESA.addBehavior("GuardaTranslator");
+        structBESA.bindGuard("GuardaTranslator", TranslatorAgentGuard.class);
         return structBESA;
     }
 
-    /**
-     * Creates the state for the HelloWorldAgent.
-     * This method returns a new instance of HelloWorldState.
-     *
-     * @return A new instance of HelloWorldAState.
-     * @throws ExceptionBESA If an error occurs during state creation.
-     */
     private static TranslatorAgentState createState() throws ExceptionBESA {
         return new TranslatorAgentState();
     }
-    
     
     @Override
     public void setupAgent() {
