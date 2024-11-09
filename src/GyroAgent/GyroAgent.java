@@ -45,7 +45,7 @@ public class GyroAgent extends AgentBESA{
                 new EventBESA(
                     GyroAgentGuard.class.getName(),
                     new PeriodicDataBESA(
-                        1000,
+                        60000,
                         PeriodicGuardBESA.START_PERIODIC_CALL
                     )
                 )
@@ -53,6 +53,7 @@ public class GyroAgent extends AgentBESA{
         } catch (ExceptionBESA e) {
             throw new RuntimeException(e);
         }
+        GyroAgentMessage.readData(null);
     }
 
     @Override

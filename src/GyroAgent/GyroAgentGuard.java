@@ -6,9 +6,6 @@ import BESA.Kernel.Agent.PeriodicGuardBESA;
 import BESA.Kernel.System.AdmBESA;
 import TranslatorAgent.TranslatorAgentGuard;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 public class GyroAgentGuard extends PeriodicGuardBESA {
 
     @Override
@@ -18,7 +15,7 @@ public class GyroAgentGuard extends PeriodicGuardBESA {
             .sendEvent(
                 new EventBESA(
                     TranslatorAgentGuard.class.getName(),
-                    new GyroAgentMessage("SensorGyroInfo")
+                    new GyroAgentMessage()
                 )
             );
         } catch (ExceptionBESA e) {

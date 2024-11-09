@@ -18,12 +18,10 @@ public class GPSAgent extends AgentBESA{
     public static GPSAgent createAgent(String alias) throws ExceptionBESA {
         double passwd = 0.99;
         return new GPSAgent(
-                alias,
-                createState(),
-                createStruct(
-                        new StructBESA()
-                ),
-                passwd
+            alias,
+            createState(),
+            createStruct(new StructBESA()),
+            passwd
         );
     }
 
@@ -33,12 +31,10 @@ public class GPSAgent extends AgentBESA{
         return structBESA;
     }
 
-
     private static GPSAgentState createState() throws ExceptionBESA {
         return new GPSAgentState();
     }
-    
-    
+
     @Override
     public void setupAgent() {
         try {
@@ -46,7 +42,7 @@ public class GPSAgent extends AgentBESA{
                 new EventBESA(
                     GPSAgentGuard.class.getName(),
                     new PeriodicDataBESA(
-                        1000,
+                        60000,
                         PeriodicGuardBESA.START_PERIODIC_CALL
                     )
                 )
@@ -54,8 +50,8 @@ public class GPSAgent extends AgentBESA{
         } catch (ExceptionBESA e) {
             throw new RuntimeException(e);
         }
+        GPSAgentMessage.readData(null);
     }
-
 
     @Override
     public void shutdownAgent() {

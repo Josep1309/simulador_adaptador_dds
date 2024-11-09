@@ -4,8 +4,6 @@ import BESA.ExceptionBESA;
 import BESA.Kernel.Agent.Event.EventBESA;
 import BESA.Kernel.Agent.PeriodicGuardBESA;
 import BESA.Kernel.System.AdmBESA;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import TranslatorAgent.TranslatorAgentGuard;
 
@@ -18,7 +16,7 @@ public class GPSAgentGuard extends PeriodicGuardBESA {
             .sendEvent(
                 new EventBESA(
                     TranslatorAgentGuard.class.getName(),
-                    new GPSAgentMessage("SensorGPSInfo")
+                    new GPSAgentMessage()
                 )
             );
         } catch (ExceptionBESA e) {

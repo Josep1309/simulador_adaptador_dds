@@ -44,7 +44,7 @@ public class WeatherAgent extends AgentBESA{
                 new EventBESA(
                     WeatherAgentGuard.class.getName(),
                     new PeriodicDataBESA(
-                        1000,
+                        60000,
                         PeriodicGuardBESA.START_PERIODIC_CALL
                     )
                 )
@@ -52,6 +52,7 @@ public class WeatherAgent extends AgentBESA{
         } catch (ExceptionBESA e) {
             throw new RuntimeException(e);
         }
+        WeatherAgentMessage.readData(null);
     }
 
     @Override
