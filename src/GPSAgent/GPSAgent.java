@@ -42,7 +42,7 @@ public class GPSAgent extends AgentBESA{
                 new EventBESA(
                     GPSAgentGuard.class.getName(),
                     new PeriodicDataBESA(
-                        1000,
+                        5000,
                         PeriodicGuardBESA.START_PERIODIC_CALL
                     )
                 )

@@ -1,32 +1,19 @@
 package ActuatorTwoAgent;
 
-import BESA.ExceptionBESA;
 import BESA.Kernel.Agent.Event.EventBESA;
 import BESA.Kernel.Agent.GuardBESA;
-import BESA.Kernel.System.AdmBESA;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import TranslatorAgent.TranslatorAgentWeatherMessage;
 
-/**
- *
- * @author jairo
- */
 public class ActuatorTwoAgentGuard extends GuardBESA {
 
     @Override
-    public void funcExecGuard(EventBESA ebesa) {
-        System.out.println("Llegó a la Guarda del Vendedor");
-        try {
-            AdmBESA.getInstance().getHandlerByAlias("comprador").sendEvent(new EventBESA(
-                            null
-                    )        
-            );
-            Thread.sleep(1000);
-        } catch (ExceptionBESA ex) {
-            System.err.println(ex.getMessage());
-        } catch (InterruptedException ex) {
-            Logger.getLogger(ActuatorTwoAgentGuard.class.getName()).log(Level.SEVERE, null, ex);
+    public void funcExecGuard(EventBESA event) {
+        Object data = event.getData();
+
+        if (data instanceof TranslatorAgentWeatherMessage) {
+            TranslatorAgentWeatherMessage weatherData = (TranslatorAgentWeatherMessage) data;
+            // Parse data to variables to create a GUI
+            System.out.println(weatherData.getContent());
         }
     }
-    
 }

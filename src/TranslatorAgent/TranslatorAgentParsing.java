@@ -1,6 +1,9 @@
 package TranslatorAgent;
 
-public class TranslatorAgentParsing {
+import BESA.Kernel.Agent.Event.DataBESA;
+
+public class TranslatorAgentParsing extends DataBESA{
+
     public static String gpsToXML(String data){
         String parseData;
         String[] parts = data.split(",");
