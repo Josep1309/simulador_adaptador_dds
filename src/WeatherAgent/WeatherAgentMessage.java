@@ -10,11 +10,11 @@ import BESA.Kernel.Agent.Event.DataBESA;
 
 public class WeatherAgentMessage extends DataBESA {
     
-    private String contenido;
+    private static String contenido;
     private static List<String> data = new ArrayList<>();
-    private int index;
+    private static int index;
         
-    public static void readData(String[] args) {
+    public static void readData() {
         String csvFile = "src/WeatherAgent/WeatherData.csv";
         String line;
 
@@ -28,21 +28,19 @@ public class WeatherAgentMessage extends DataBESA {
     }
 
     public WeatherAgentMessage() {
+        setContent();
     }
 
-    public String getContenido() {
-        index = WeatherAgentState.getIndex();
-        setContenido(data.get(index));
-        if (index == data.size()-1){
-            WeatherAgentState.restartIndex();
-            return contenido;
-        }
-        WeatherAgentState.increaseIndex();
+    public String getContent() {
         return contenido;
     }
 
-    public void setContenido(String contenido) {
-        this.contenido = contenido;
+    public static void setContent() {
+        index = WeatherAgentState.getIndex();
+        if (index == data.size()-1){
+            WeatherAgentState.restartIndex();
+        }
+        contenido = data.get(index);
+        WeatherAgentState.increaseIndex();
     }
-    
 }

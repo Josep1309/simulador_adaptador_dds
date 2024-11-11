@@ -10,11 +10,11 @@ import BESA.Kernel.Agent.Event.DataBESA;
 
 public class GyroAgentMessage extends DataBESA {
     
-    private String contenido;
+    private static String contenido;
     private static List<String> data = new ArrayList<>();
-    private int index;
+    private static int index;
         
-    public static void readData(String[] args) {
+    public static void readData() {
         String csvFile = "src/GyroAgent/GyroData.csv";
         String line;
 
@@ -28,21 +28,19 @@ public class GyroAgentMessage extends DataBESA {
     }
 
     public GyroAgentMessage() {
+        setContent();
     }
 
-    public String getContenido() {
-        index = GyroAgentState.getIndex();
-        setContenido(data.get(index));
-        if (index == data.size()-1){
-            GyroAgentState.restartIndex();
-            return contenido;
-        }
-        GyroAgentState.increaseIndex();
+    public String getContent() {
         return contenido;
     }
 
-    public void setContenido(String contenido) {
-        this.contenido = contenido;
+    public static void setContent() {
+        index = GyroAgentState.getIndex();
+        if (index == data.size()-1){
+            GyroAgentState.restartIndex();
+        }
+        contenido = data.get(index);
+        GyroAgentState.increaseIndex();
     }
-    
 }

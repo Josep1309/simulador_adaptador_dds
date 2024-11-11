@@ -16,15 +16,17 @@ public class TranslatorAgentGuard extends GuardBESA {
         Object data = event.getData();
 
         if (data instanceof GPSAgentMessage) {
-            GPSAgentMessage gpsAgentMessage = (GPSAgentMessage) data;
-            System.out.println(gpsAgentMessage.getContenido());
+            GPSAgentMessage gpsMessage = (GPSAgentMessage) data;
+            String gpsData = TranslatorAgentParsing.gpsToXML(gpsMessage.getContent());
+            System.out.println(gpsData);
         } else if (data instanceof GyroAgentMessage) {
-            GyroAgentMessage gyroAgentMessage = (GyroAgentMessage) data;
-            System.out.println(gyroAgentMessage.getContenido());
+            GyroAgentMessage gyroMessage = (GyroAgentMessage) data;
+            String gyroData = TranslatorAgentParsing.GyroToXML(gyroMessage.getContent());
+            System.out.println(gyroData);
         }else if (data instanceof WeatherAgentMessage) {
-            WeatherAgentMessage weatherAgentMessage = (WeatherAgentMessage) data;
-            System.out.println(weatherAgentMessage.getContenido());
+            WeatherAgentMessage weatherMessage = (WeatherAgentMessage) data;
+            String weatherData = TranslatorAgentParsing.WeatherToXML(weatherMessage.getContent());
+            System.out.println(weatherData);
         }
-        
     }
 }
