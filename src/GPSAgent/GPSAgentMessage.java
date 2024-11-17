@@ -6,42 +6,54 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import BESA.ExceptionBESA;
 import BESA.Kernel.Agent.Event.DataBESA;
+import BESA.Kernel.System.AdmBESA;
 
 public class GPSAgentMessage extends DataBESA {
     
     // Variables for data reading
-    private static String contenido;
-    private static List<String> data = new ArrayList<>();
-    private static int index;
+    private String contenido;
+    private List<String> data = new ArrayList<>();
+    private int index;
+
+    private GPSAgentState gpsAgentState;
         
-    public static void readData() {
+    public void readData() {
         String csvFile = "src/GPSAgent/GPSData.csv";
         String line;
 
         try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
             while ((line = br.readLine()) != null) {
-                data.add(line);
+                this.data.add(line);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public GPSAgentMessage() {
+    public GPSAgentMessage(GPSAgentState state) {
+        this.gpsAgentState = state;
+        readData();
         setContent();
     }
 
     public String getContent() {
-        return contenido;
+        return this.contenido;
     }
 
-    public static void setContent() {
-        index = GPSAgentState.getIndex();
-        if (index == data.size()-1){
-            GPSAgentState.restartIndex();
+    public void setContent() {
+        this.index = gpsAgentState.getIndex();
+        if (this.index == this.data.size()-1){
+            gpsAgentState.restartIndex();
         }
-        contenido = data.get(index);
-        GPSAgentState.increaseIndex();
-    }   
+        this.contenido = this.data.get(this.index);
+        gpsAgentState.increaseIndex();
+        try {
+            GPSAgentState gpsState = (GPSAgentState) AdmBESA.getInstance().getHandlerByAlias("GPS").getAg().getState();
+            gpsState.setContent(this.contenido);
+        } catch (ExceptionBESA e) {
+            e.printStackTrace();
+        }
+    }
 }

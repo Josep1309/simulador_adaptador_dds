@@ -1,9 +1,8 @@
-package ActuatorOneAgent;
+package ViewerAgent;
 
 import BESA.Kernel.Agent.StateBESA;
 
-public class ActuatorOneAgentState extends StateBESA {
-
+public class ViewerAgentState extends StateBESA{
     // Variables for GPS data
     private double latitude;
     private String latitudeDirection;
@@ -27,7 +26,7 @@ public class ActuatorOneAgentState extends StateBESA {
     private double windSpeedMetersPerSecond;
 
     // Constructor
-    public ActuatorOneAgentState() {
+    public ViewerAgentState() {
     }
 
     // Getters and setters for GPS data

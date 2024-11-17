@@ -10,6 +10,7 @@ import GPSAgent.GPSAgent;
 import GyroAgent.GyroAgent;
 import WeatherAgent.WeatherAgent;
 import TranslatorAgent.TranslatorAgent;
+import ViewerAgent.ViewerAgent;
 import ActuatorOneAgent.ActuatorOneAgent;
 import ActuatorTwoAgent.ActuatorTwoAgent;
 
@@ -25,9 +26,11 @@ public class Enviroment {
         TranslatorAgent translatorAgent = TranslatorAgent.createAgent("Translator");
         ActuatorOneAgent actuatorOneAgent = ActuatorOneAgent.createAgent("ActuatorOne");
         ActuatorTwoAgent actuatorTwoAgent = ActuatorTwoAgent.createAgent("ActuatorTwo");
+        ViewerAgent viewerAgent = ViewerAgent.createAgent("Viewer");
         
-        // Start the SellingAgent.
+        // Start the main agents.
         translatorAgent.start();
+        viewerAgent.start();
         // Wait one second before start the sensors signals
         try {
             Thread.sleep(1000);

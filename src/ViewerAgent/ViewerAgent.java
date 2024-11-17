@@ -1,4 +1,4 @@
-package GPSAgent;
+package ViewerAgent;
 
 import BESA.ExceptionBESA;
 import BESA.Kernel.Agent.AgentBESA;
@@ -10,14 +10,14 @@ import BESA.Kernel.Agent.Event.EventBESA;
 import BESA.Kernel.System.AdmBESA;
 import BESA.Util.PeriodicDataBESA;
 
-public class GPSAgent extends AgentBESA{
-    public GPSAgent(String alias, StateBESA state, StructBESA structAgent, double passwd) throws KernelAgentExceptionBESA {
+public class ViewerAgent extends AgentBESA{
+    public ViewerAgent(String alias, StateBESA state, StructBESA structAgent, double passwd) throws KernelAgentExceptionBESA {
         super(alias, state, structAgent, passwd);
     }
 
-    public static GPSAgent createAgent(String alias) throws ExceptionBESA {
+    public static ViewerAgent createAgent(String alias) throws ExceptionBESA {
         double passwd = 0.99;
-        return new GPSAgent(
+        return new ViewerAgent(
             alias,
             createState(),
             createStruct(new StructBESA()),
@@ -26,21 +26,21 @@ public class GPSAgent extends AgentBESA{
     }
 
     private static StructBESA createStruct(StructBESA structBESA) throws ExceptionBESA {
-        structBESA.addBehavior("GuardaGPS");
-        structBESA.bindGuard("GuardaGPS", GPSAgentGuard.class);
+        structBESA.addBehavior("GuardaViewer");
+        structBESA.bindGuard("GuardaViewer", ViewerAgentGuard.class);
         return structBESA;
     }
 
-    private static GPSAgentState createState() throws ExceptionBESA {
-        return new GPSAgentState();
+    private static ViewerAgentState createState() throws ExceptionBESA {
+        return new ViewerAgentState();
     }
 
     @Override
     public void setupAgent() {
         try {
-            AdmBESA.getInstance().getHandlerByAlias("GPS").sendEvent(
+            AdmBESA.getInstance().getHandlerByAlias("Viewer").sendEvent(
                 new EventBESA(
-                    GPSAgentGuard.class.getName(),
+                    ViewerAgentGuard.class.getName(),
                     new PeriodicDataBESA(
                         1000,
                         PeriodicGuardBESA.START_PERIODIC_CALL

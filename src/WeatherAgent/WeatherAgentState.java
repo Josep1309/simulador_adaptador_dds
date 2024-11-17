@@ -2,23 +2,31 @@ package WeatherAgent;
 
 import BESA.Kernel.Agent.StateBESA;
 
-class WeatherAgentState extends StateBESA{
+public class WeatherAgentState extends StateBESA{
 
-    private static int index = 0;
+    private int index = 0;
+    private String contenido;
     
     public WeatherAgentState() {
     }
 
-    public static int getIndex() {
+    public int getIndex() {
         return index;
     }
 
-    public static void increaseIndex() {
+    public void increaseIndex() {
         index++;
     }
 
-    public static void restartIndex(){
+    public void restartIndex(){
         index = 0;
+    }    
+
+    public void setContent(String content){
+        contenido = content;
     }
     
+    public String getContent(){
+        return contenido;
+    }
 }
