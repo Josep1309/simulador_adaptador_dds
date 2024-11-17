@@ -45,7 +45,6 @@ public class ActuatorTwoAgentGuard extends GuardBESA {
             if (windSpeedMetersPerSecondMatcher.find()) {
                 actuatorTwoAgentState.setWindSpeedMetersPerSecond(Double.parseDouble(windSpeedMetersPerSecondMatcher.group(1)));
             }
-            //System.out.println(weatherData.getContent());
         }
     }
 }

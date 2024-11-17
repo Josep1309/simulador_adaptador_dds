@@ -50,7 +50,7 @@ public class ViewerAgentGuard extends PeriodicGuardBESA {
         }
 
         try {
-            ActuatorTwoAgentState actuatorTwoAgentState = (ActuatorTwoAgentState) AdmBESA.getInstance().getHandlerByAlias("ActuatorTwp").getAg().getState();
+            ActuatorTwoAgentState actuatorTwoAgentState = (ActuatorTwoAgentState) AdmBESA.getInstance().getHandlerByAlias("ActuatorTwo").getAg().getState();
             viewerAgentState.setTrueWindDirection(actuatorTwoAgentState.getTrueWindDirection());
             viewerAgentState.setWindSpeedKnots(actuatorTwoAgentState.getWindSpeedKnots());
         } catch (ExceptionBESA e) {
