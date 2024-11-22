@@ -75,7 +75,7 @@ public class ViewerAgentGuard extends PeriodicGuardBESA {
             Wind -- %s
 
 
-            Final Actuators visualization:
+            Post traduction visualization:
             Latitude -- %s %s
             Longitude -- %s %s
             Altitude -- %s %s
